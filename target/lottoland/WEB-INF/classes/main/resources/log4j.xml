@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    * Copyright 2000-2012 MULTICERT S.A.
+    * All rights reserved.
+    *
+    * This source is provided for inspection purposes and recompilation only,
+    * unless specified differently in a contract with MULTICERT S.A.. This
+    * source has to be kept in strict confidence and must not be disclosed to any
+    * third party under any circumstances. Redistribution in source and binary
+    * forms, with or without modification, are NOT permitted in any case!
+    *
+    * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+    * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    * ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+    * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+    * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+    * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+    * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+    * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+    * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+    * SUCH DAMAGE.
+    * Should any term or condition of this representation be deemed invalid or
+    * inefficient, it will not affect the validity and efficiency of the remainder
+    * of the Contract.
+-->
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <appender name="LogFile"
+                  class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="Append" value="true" />
+        <param name="File" value="${catalina.base}/logs/lottoland.log" />
+        <param name="DatePattern" value="\'.\'yyyy-MM-dd" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                               value="[%-5p][%d{ISO8601}][%c{5}]: %m%n" />
+        </layout>
+    </appender>
+	
+    <appender name="DebugLogFile"
+                  class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="Append" value="true" />
+        <param name="File" value="${catalina.base}/logs/lottoland-debug.log" />
+        <param name="DatePattern" value="\'.\'yyyy-MM-dd" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                               value="[%-5p][%d{ISO8601}][%c{5}]: %m%n" />
+        </layout>
+    </appender>
+
+    <category name="com.lottoland">
+        <priority value="DEBUG" />
+        <appender-ref ref="DebugLogFile" />
+    </category>
+
+    <root>
+        <priority value="INFO" />
+        <appender-ref ref="LogFile" />
+    </root>
+
+</log4j:configuration>
